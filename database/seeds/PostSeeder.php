@@ -12,10 +12,13 @@ class PostSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i <0; $i++){
+        for ($i=0; $i <50; $i++){
             $post = new Post();
-            $post->title = $faker->words(rand(5,18), true);
-            $post->content = $faker-> paragraphs                                       
+            $post->title = $faker->words(rand(5,10), true);
+            $post->content = $faker-> paragraphs(rand(10,20), true);
+            $post->slug = str_replace(' ', '-', $post->title);
+            
+            $post->save();
         }
     }
 }
