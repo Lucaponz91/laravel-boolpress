@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Post;
+
 
 class SendPostCreatedMail extends Mailable
 {
@@ -16,9 +18,9 @@ class SendPostCreatedMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Post $post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -28,6 +30,7 @@ class SendPostCreatedMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.post_created');
+        $post = $this->post;
+        return $this->markdown('mails.post_created', compact('post'));
     }
 }
