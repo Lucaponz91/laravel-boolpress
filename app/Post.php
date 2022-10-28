@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class Post extends Model
 {
@@ -46,4 +48,9 @@ class Post extends Model
 
         return $slug;
     }
+    public function getCoverPathAttribute(){
+        return $this->cover ? Storage::disk('images')->url($this->cover) : null;
+    }
+
+    protected $appends = ['cover_path'];
 }
