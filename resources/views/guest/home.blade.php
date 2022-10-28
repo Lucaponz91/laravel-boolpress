@@ -16,6 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- Tailwind Finalmente--}}
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
         const loginRoute = "{{ route('login') }}"
