@@ -19,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route::get('posts', 'Api\PostController@index');
-Route::resource('posts', 'Api\PostController')->only(['index', 'show']);
-
-// stiamo creando una rotta /api/posts -> Api\PostController@index
+Route::resource('posts', 'Api\PostController')->only(['index', 'show'])->parameters([
+  'posts' => 'slug'
+]);
+// /api/posts -> Api\PostController@index
 // /api/posts/{post} -> Api\PostController@show
+
+Route::post('/leads', 'Api\LeadController@store');
